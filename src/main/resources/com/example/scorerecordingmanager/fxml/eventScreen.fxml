@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="550.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.scorerecordingmanager.Controllers.EventScreenController">
+    <AnchorPane fx:id="innerAnchorPane" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+        <children>
+            <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <children>
+                    <HBox alignment="CENTER">
+                        <children>
+                            <Label contentDisplay="CENTER" text="Name Of Event">
+                                <opaqueInsets>
+                                    <Insets />
+                                </opaqueInsets>
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                            </Label>
+                        </children>
+                  <VBox.margin>
+                     <Insets top="20.0" />
+                  </VBox.margin>
+                    </HBox>
+                    <HBox fx:id="hBox" alignment="CENTER">
+                        <children>
+                     <Label fx:id="eventName" alignment="CENTER" prefHeight="22.0" prefWidth="221.0" styleClass="text" text="Event Name">
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                     </Label>
+                        </children>
+                        <VBox.margin>
+                            <Insets />
+                        </VBox.margin>
+                    </HBox>
+                    <HBox>
+                        <VBox.margin>
+                            <Insets top="30.0" />
+                        </VBox.margin>
+                        <children>
+                            <VBox alignment="CENTER">
+                                <children>
+                           <Label fx:id="teamName1" alignment="CENTER" prefHeight="50.0" prefWidth="150.0" styleClass="text" text="Team Name">
+                              <font>
+                                 <Font size="24.0" />
+                              </font>
+                           </Label>
+                           <HBox alignment="CENTER">
+                              <children>
+                                 <Button mnemonicParsing="false" onMouseClicked="#makeFirstTeamDecrease" styleClass="roundButton" text="-">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Button>
+                                 <Label fx:id="scoreLabel1" alignment="CENTER" prefHeight="41.0" prefWidth="40.0" styleClass="text" text="0">
+                                    <font>
+                                       <Font size="18.0" />
+                                    </font>
+                                    <HBox.margin>
+                                       <Insets left="5.0" right="5.0" />
+                                    </HBox.margin>
+                                 </Label>
+                                 <Button mnemonicParsing="false" onMouseClicked="#makeFirstTeamIncrease" styleClass="roundButton" text="+" />
+                              </children>
+                              <VBox.margin>
+                                 <Insets top="15.0" />
+                              </VBox.margin>
+                           </HBox>
+                           <Label text="Points" textFill="#9a9191">
+                              <font>
+                                 <Font name="System Bold" size="12.0" />
+                              </font>
+                           </Label>
+                                </children>
+                                <HBox.margin>
+                                    <Insets left="20.0" />
+                                </HBox.margin>
+                            </VBox>
+                     <VBox alignment="CENTER">
+                        <children>
+                           <Label fx:id="timerLabel" text="00:00" />
+                           <HBox alignment="TOP_CENTER">
+                              <children>
+                                 <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#startTimeline" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../icon/start.png" />
+                                    </image>
+                                 </ImageView>
+                                 <ImageView fitHeight="40.0" fitWidth="41.0" onMouseClicked="#PauseTimeLine" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                       <Image url="@../icon/pause.png" />
+                                    </image>
+                                    <HBox.margin>
+                                       <Insets left="5.0" />
+                                    </HBox.margin>
+                                 </ImageView>
+                              </children>
+                              <VBox.margin>
+                                 <Insets top="10.0" />
+                              </VBox.margin>
+                           </HBox>
+                        </children>
+                        <HBox.margin>
+                           <Insets left="40.0" right="40.0" />
+                        </HBox.margin>
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                     </VBox>
+                            <VBox alignment="CENTER">
+                                <children>
+                           <Label fx:id="teamName2" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="150.0" styleClass="text" text="Team Name">
+                              <font>
+                                 <Font size="24.0" />
+                              </font>
+                           </Label>
+                           <HBox alignment="CENTER">
+                              <children>
+                                 <Button mnemonicParsing="false" onMouseClicked="#makeSecondTeamDecrease" styleClass="roundButton" text="-">
+                                    <font>
+                                       <Font size="13.0" />
+                                    </font>
+                                 </Button>
+                                 <Label fx:id="scoreLabel2" alignment="CENTER" prefHeight="41.0" prefWidth="40.0" styleClass="text" text="0">
+                                    <font>
+                                       <Font size="18.0" />
+                                    </font>
+                                    <HBox.margin>
+                                       <Insets left="5.0" right="5.0" />
+                                    </HBox.margin>
+                                 </Label>
+                                 <Button mnemonicParsing="false" onMouseClicked="#makeSecondTeamIncrease" styleClass="roundButton" text="+" />
+                              </children>
+                              <VBox.margin>
+                                 <Insets top="15.0" />
+                              </VBox.margin>
+                           </HBox>
+                           <Label text="Points" textFill="#9a9191">
+                              <font>
+                                 <Font name="System Bold" size="12.0" />
+                              </font>
+                           </Label>
+                                </children>
+                                <HBox.margin>
+                                    <Insets />
+                                </HBox.margin>
+                            </VBox>
+                        </children>
+                    </HBox>
+                    <HBox alignment="CENTER">
+                        <children>
+                            <Button fx:id="startEvent" alignment="CENTER" onAction="#finishEvent" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 5, 0, 0, 1);" styleClass="customButton" text="Finish">
+                                <font>
+                                    <Font name="System Bold" size="21.0" />
+                                </font>
+                            </Button>
+                        </children>
+                        <VBox.margin>
+                            <Insets top="30.0" />
+                        </VBox.margin>
+                    </HBox>
+                </children>
+            </VBox>
+        </children>
+    </AnchorPane>
+</AnchorPane>

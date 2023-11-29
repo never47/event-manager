@@ -1,0 +1,64 @@
+#innerAnchorPane{
+       -fx-border-color: black;
+        -fx-border-width: 2px;
+}
+
+#titleLabel {
+    -fx-background-color: rgba(255, 165, 0, 0.2);
+}
+
+#vBox{
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: black;
+}
+
+#hBox{
+    -fx-background-color: rgba(255, 165, 0, 0.2);
+}
+
+.text{
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+}
+
+.customButton{
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+}
+
+.faqButton{
+    -fx-background-radius: 50%;
+}
+
+.customButton:hover{
+    -fx-background-color: #f0f8ff;
+}
+
+
+.backButton{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.roundButton{
+    -fx-background-radius: 5em;
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5em;
+}
+
+#timerLabel {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-padding: 10px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.iconButton:hover{
+    -fx-opacity: 0.5;
+}

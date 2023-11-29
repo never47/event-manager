@@ -1,0 +1,27 @@
+CREATE TABLE Player (
+    playerID INTEGER PRIMARY KEY AUTOINCREMENT,
+    playerName TEXT,
+    teamID INTEGER,
+    FOREIGN KEY (teamID) REFERENCES Team(teamID)
+);
+
+CREATE TABLE Team (
+    teamID INTEGER PRIMARY KEY AUTOINCREMENT,
+    teamName TEXT,
+    teamScore INTEGER,
+    eventID INTEGER,
+    FOREIGN KEY (eventID) REFERENCES Event(eventID)
+);
+
+CREATE TABLE Event (
+    eventID INTEGER PRIMARY KEY AUTOINCREMENT,
+    eventName TEXT,
+    userID INTEGER,
+    FOREIGN KEY (userID) REFERENCES User(userID)
+);
+
+CREATE TABLE User (
+    userID INTEGER PRIMARY KEY AUTOINCREMENT,
+    userName TEXT,
+    Password TEXT
+);
