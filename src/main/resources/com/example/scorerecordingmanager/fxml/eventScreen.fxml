@@ -15,6 +15,14 @@
         <children>
             <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                 <children>
+               <HBox alignment="TOP_RIGHT">
+                  <children>
+                     <Button mnemonicParsing="false" onAction="#signOut" styleClass="customButton" text="Sign out" />
+                  </children>
+                  <VBox.margin>
+                     <Insets right="5.0" top="5.0" />
+                  </VBox.margin>
+               </HBox>
                     <HBox alignment="CENTER">
                         <children>
                             <Label contentDisplay="CENTER" text="Name Of Event">
@@ -27,7 +35,7 @@
                             </Label>
                         </children>
                   <VBox.margin>
-                     <Insets top="20.0" />
+                     <Insets />
                   </VBox.margin>
                     </HBox>
                     <HBox fx:id="hBox" alignment="CENTER">

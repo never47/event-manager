@@ -15,7 +15,7 @@ public class DBHelper {
 
     public DBHelper() {
         user_id=-1;
-        setNull();
+        resetEvent();
     }
 
     public static boolean isIsScoreSaved() {
@@ -113,7 +113,7 @@ public class DBHelper {
         DBHelper.isScoreSaved = isScoreSaved;
     }
 
-    public static void setNull(){
+    public static void resetEvent(){
         event_id=-1;
         team_id1=-1;
         team_id2=-1;
@@ -124,5 +124,10 @@ public class DBHelper {
         teamName1=null;
         teamName2=null;
         isScoreSaved = false;
+    }
+
+    public static void resetUser() {
+        resetEvent();
+        user_id = -1;
     }
 }

@@ -15,7 +15,16 @@
         <children>
             <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                 <children>
-                    <Button mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="90.0" styleClass="backButton" text="&lt; Back" />
+               <HBox>
+                  <children>
+                     <Button mnemonicParsing="false" onAction="#goBack" prefHeight="27.0" prefWidth="90.0" styleClass="backButton" text="&lt; Back" />
+                     <Button mnemonicParsing="false" onAction="#signOut" styleClass="customButton" text="Sign out">
+                        <HBox.margin>
+                           <Insets left="347.0" top="5.0" />
+                        </HBox.margin>
+                     </Button>
+                  </children>
+               </HBox>
                     <HBox alignment="CENTER">
                         <children>
                             <Label contentDisplay="CENTER" text="Name Of Event">

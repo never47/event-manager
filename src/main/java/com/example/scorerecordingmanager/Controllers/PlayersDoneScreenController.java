@@ -81,5 +81,10 @@ public class PlayersDoneScreenController {
     void goBack(ActionEvent event) {
         SceneChanger.changeScene("teamDoneScreen");
     }
-
+    @FXML
+    public void signOut(ActionEvent actionEvent) {
+        SceneChanger.removeScenes();
+        DBHelper.resetUser();
+        SceneChanger.changeScene("login");
+    }
 }

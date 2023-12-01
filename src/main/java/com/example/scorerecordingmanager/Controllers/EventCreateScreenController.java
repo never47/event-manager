@@ -3,6 +3,7 @@ package com.example.scorerecordingmanager.Controllers;
 import com.example.scorerecordingmanager.DBHelper;
 import com.example.scorerecordingmanager.SQLiteJDBC;
 import com.example.scorerecordingmanager.SceneChanger;
+import com.example.scorerecordingmanager.Tools.AlertIndicator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -41,8 +42,6 @@ public class EventCreateScreenController {
     @FXML
     private Spinner<Integer> spinner2;
 
-    @FXML
-    private Button startEvent;
 
     @FXML
     private TextField teamName1;
@@ -112,19 +111,12 @@ public class EventCreateScreenController {
         }
     }
 
-    private void showErrorAlert(Alert.AlertType alertType,String titleText ,String ContentText){
-        Alert alert = new Alert(alertType);
-        alert.setTitle(titleText);
-        alert.setContentText(ContentText);
-        alert.showAndWait();
-    }
-
     @FXML
     void createFirstTeam(ActionEvent event) {
         if(eventNameField.getText().isBlank()
                 || teamName1.getText().isBlank()){
-            showErrorAlert(Alert.AlertType.ERROR, "Error",
-                    "Enter event and team name");
+            AlertIndicator.showAlarm(Alert.AlertType.ERROR, "Information",
+                    "Enter event and team nam", false);
             return;
         }
 
@@ -135,8 +127,8 @@ public class EventCreateScreenController {
         if(DBHelper.getTeam_id1()==-1){
             createTeam(teamName1.getText(),1);
         }else{
-            showErrorAlert(Alert.AlertType.INFORMATION, "Information",
-                    "You already register first team");
+            AlertIndicator.showAlarm(Alert.AlertType.ERROR, "Information",
+                    "You already register first team", false);
         }
     }
 
@@ -144,8 +136,8 @@ public class EventCreateScreenController {
     void CreateSecondTeam(ActionEvent event) {
         if(eventNameField.getText().isBlank()
             || teamName2.getText().isBlank()){
-            showErrorAlert(Alert.AlertType.ERROR, "Error",
-                    "Enter event and team name");
+            AlertIndicator.showAlarm(Alert.AlertType.ERROR, "Information",
+                    "Enter event and team name", false);
             return;
         }
 
@@ -156,30 +148,30 @@ public class EventCreateScreenController {
         if(DBHelper.getTeam_id2()==-1){
             createTeam(teamName2.getText(),2);
         }else{
-            showErrorAlert(Alert.AlertType.INFORMATION, "Information",
-                    "You already register second team");
+            AlertIndicator.showAlarm(Alert.AlertType.ERROR, "Information",
+                    "You already register second team", false);
         }
     }
 
     @FXML
     void StartEvent(ActionEvent event) {
         if(DBHelper.getTeam_id1()==-1 && DBHelper.getTeam_id2()==-1){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Create teams");
-            alert.showAndWait();
+            AlertIndicator.showAlarm(Alert.AlertType.ERROR, "ERROR",
+                    "Create teams", false);
         }else{
             SceneChanger.changeScene("eventScreen");
         }
     }
 
     @FXML
-    void howToUse(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("How to Use");
-        alert.setHeaderText(null);
-        alert.setContentText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum");
-        alert.showAndWait();
+    public void signOut(ActionEvent actionEvent) {
+        SceneChanger.removeScenes();
+        DBHelper.resetUser();
+        SceneChanger.changeScene("login");
     }
 
+    @FXML
+    void howToUse(ActionEvent event) {
+        AlertIndicator.showFAQ();
+    }
 }

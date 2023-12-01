@@ -3,6 +3,7 @@ package com.example.scorerecordingmanager.Controllers;
 import com.example.scorerecordingmanager.DBHelper;
 import com.example.scorerecordingmanager.SQLiteJDBC;
 import com.example.scorerecordingmanager.SceneChanger;
+import com.example.scorerecordingmanager.Tools.AlertIndicator;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -146,7 +147,7 @@ public class EventScreenController {
         backToHome.setOnAction(e-> {
             overlayStage.close();
             SceneChanger.removeScenes();
-            DBHelper.setNull();
+            DBHelper.resetEvent();
             SceneChanger.changeScene("homeScreen");
         });
 
@@ -165,20 +166,14 @@ public class EventScreenController {
         overlayStage.showAndWait();
     }
 
-    private void showErrorAlert(){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setContentText("Score can't be less than 0");
-        alert.showAndWait();
-    }
-
     @FXML
     void makeFirstTeamDecrease(MouseEvent event) {
         if(scoreTeam1>0){
             scoreTeam1--;
             scoreLabel1.setText(Integer.toString(scoreTeam1));
         }else{
-            showErrorAlert();
+            AlertIndicator.showAlarm(Alert.AlertType.ERROR, "Error",
+                    "Score can't be less than 0", false);
         }
     }
 
@@ -194,7 +189,8 @@ public class EventScreenController {
             scoreTeam2--;
             scoreLabel2.setText(Integer.toString(scoreTeam2));
         }else{
-            showErrorAlert();
+            AlertIndicator.showAlarm(Alert.AlertType.ERROR, "Error",
+                    "Score can't be less than 0", false);
         }
     }
 
@@ -204,4 +200,10 @@ public class EventScreenController {
         scoreLabel2.setText(Integer.toString(scoreTeam2));
     }
 
+    @FXML
+    public void signOut(ActionEvent actionEvent) {
+        SceneChanger.removeScenes();
+        DBHelper.resetUser();
+        SceneChanger.changeScene("login");
+    }
 }

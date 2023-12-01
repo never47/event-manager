@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableRow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -57,5 +56,12 @@ public class EventDoneScreenController {
             throw new RuntimeException(e);
         }
         playersField.getChildren().add(vbox);
+    }
+
+    @FXML
+    public void signOut(ActionEvent actionEvent) {
+        SceneChanger.removeScenes();
+        DBHelper.resetUser();
+        SceneChanger.changeScene("login");
     }
 }

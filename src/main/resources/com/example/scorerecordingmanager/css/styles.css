@@ -62,3 +62,8 @@
 .iconButton:hover{
     -fx-opacity: 0.5;
 }
+
+.alert {
+    -fx-font-size: 16pt;
+}
+

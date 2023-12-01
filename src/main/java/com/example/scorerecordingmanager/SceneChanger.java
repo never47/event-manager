@@ -50,7 +50,9 @@ public class SceneChanger {
         stage.setScene(scenes.get(name));
         stage.show();
 
-        if(name.contains("Done")){
+        if(name.contains("Done")
+                || name.contains("login")
+                || name.contains("signUp")){
             scenes.remove(name);
         }
     }
