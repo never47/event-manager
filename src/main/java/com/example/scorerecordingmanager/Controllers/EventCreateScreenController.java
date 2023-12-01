@@ -135,7 +135,7 @@ public class EventCreateScreenController {
     @FXML
     void CreateSecondTeam(ActionEvent event) {
         if(eventNameField.getText().isBlank()
-            || teamName2.getText().isBlank()){
+                || teamName2.getText().isBlank()){
             AlertIndicator.showAlarm(Alert.AlertType.ERROR, "Information",
                     "Enter event and team name", false);
             return;

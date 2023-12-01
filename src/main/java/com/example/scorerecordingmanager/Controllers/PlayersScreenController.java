@@ -38,7 +38,7 @@ public class PlayersScreenController {
 
     @FXML
     private Label teamName;
-    
+
     private List<TextField> playersNames = new ArrayList<>();
     private int teamID;
 
@@ -75,7 +75,7 @@ public class PlayersScreenController {
                 currTF.setAlignment(Pos.CENTER);
                 currTF.setFont(new Font(15.0));
                 currTF.setPromptText("Player " + (added_counter+1));
-                
+
                 currHBOX.setSpacing(25.0);
                 currHBOX.getChildren().add(currTF);
                 playersNames.add(currTF);

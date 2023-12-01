@@ -36,7 +36,7 @@
                      </Label>
                   </children>
                     </HBox>
-                    <ScrollPane prefHeight="244.0" prefWidth="486.0">
+                    <ScrollPane prefHeight="207.0" prefWidth="486.0">
                         <content>
                             <AnchorPane fx:id="playersField" minHeight="0.0" minWidth="0.0" />
                         </content>
@@ -44,6 +44,26 @@
                             <Insets left="10.0" right="10.0" top="10.0" />
                         </VBox.margin>
                     </ScrollPane>
+               <HBox alignment="CENTER_RIGHT">
+                  <children>
+                     <Label text="How to use">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets right="5.0" />
+                        </HBox.margin>
+                     </Label>
+                     <Button mnemonicParsing="false" onAction="#howToUse" styleClass="faqButton" text="?">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <VBox.margin>
+                     <Insets right="5.0" top="5.0" />
+                  </VBox.margin>
+               </HBox>
                 </children>
             </VBox>
         </children>

@@ -15,13 +15,14 @@
         <children>
             <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                 <children>
-               <HBox alignment="TOP_RIGHT">
+               <HBox>
                   <children>
-                     <Button mnemonicParsing="false" onAction="#signOut" styleClass="customButton" text="Sign out" />
+                     <Button mnemonicParsing="false" onAction="#signOut" styleClass="customButton" text="Sign out">
+                        <HBox.margin>
+                           <Insets left="438.0" top="5.0" />
+                        </HBox.margin>
+                     </Button>
                   </children>
-                  <VBox.margin>
-                     <Insets right="5.0" top="5.0" />
-                  </VBox.margin>
                </HBox>
                     <HBox alignment="CENTER">
                         <children>
@@ -47,7 +48,7 @@
                      </Label>
                         </children>
                         <VBox.margin>
-                            <Insets />
+                            <Insets left="20.0" right="20.0" />
                         </VBox.margin>
                     </HBox>
                     <HBox>
@@ -98,12 +99,12 @@
                            <Label fx:id="timerLabel" text="00:00" />
                            <HBox alignment="TOP_CENTER">
                               <children>
-                                 <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#startTimeline" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#startTimeline" pickOnBounds="true" preserveRatio="true" styleClass="timerButtons">
                                     <image>
                                        <Image url="@../icon/start.png" />
                                     </image>
                                  </ImageView>
-                                 <ImageView fitHeight="40.0" fitWidth="41.0" onMouseClicked="#PauseTimeLine" pickOnBounds="true" preserveRatio="true">
+                                 <ImageView fitHeight="40.0" fitWidth="41.0" onMouseClicked="#PauseTimeLine" pickOnBounds="true" preserveRatio="true" styleClass="timerButtons">
                                     <image>
                                        <Image url="@../icon/pause.png" />
                                     </image>
@@ -173,9 +174,29 @@
                             </Button>
                         </children>
                         <VBox.margin>
-                            <Insets top="30.0" />
+                            <Insets top="25.0" />
                         </VBox.margin>
                     </HBox>
+               <HBox alignment="CENTER_RIGHT">
+                  <children>
+                     <Label text="How to use">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets right="5.0" />
+                        </HBox.margin>
+                     </Label>
+                     <Button mnemonicParsing="false" onAction="#howToUse" styleClass="faqButton" text="?">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <VBox.margin>
+                     <Insets right="5.0" />
+                  </VBox.margin>
+               </HBox>
                 </children>
             </VBox>
         </children>

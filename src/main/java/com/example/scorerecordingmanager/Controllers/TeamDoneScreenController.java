@@ -3,6 +3,7 @@ package com.example.scorerecordingmanager.Controllers;
 import com.example.scorerecordingmanager.DBHelper;
 import com.example.scorerecordingmanager.SQLiteJDBC;
 import com.example.scorerecordingmanager.SceneChanger;
+import com.example.scorerecordingmanager.Tools.AlertIndicator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -87,5 +88,10 @@ public class TeamDoneScreenController {
         SceneChanger.removeScenes();
         DBHelper.resetUser();
         SceneChanger.changeScene("login");
+    }
+
+    @FXML
+    void howToUse(ActionEvent event) {
+        AlertIndicator.showFAQ();
     }
 }

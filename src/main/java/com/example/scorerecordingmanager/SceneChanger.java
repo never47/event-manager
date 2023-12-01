@@ -14,16 +14,16 @@ public class SceneChanger {
     private static Stage stage;
     private static Map<String, Scene> scenes;
     private static final Map<String,String> scenes_path = new HashMap<>(){{
-     put("login","fxml/login.fxml");
-     put("signUp","fxml/signUp.fxml");
-     put("homeScreen","fxml/homeScreen.fxml");
-     put("eventCreateScreen","fxml/eventCreateScreen.fxml");
-     put("playerScreenController1","fxml/playersScreen.fxml");
-     put("playerScreenController2","fxml/playersScreen.fxml");
-     put("eventScreen","fxml/eventScreen.fxml");
-     put("eventDoneScreen", "fxml/eventDoneScreen.fxml");
-     put("teamDoneScreen", "fxml/teamDoneScreen.fxml");
-     put("playersDoneScreen", "fxml/playersDoneScreen.fxml");
+        put("login","fxml/login.fxml");
+        put("signUp","fxml/signUp.fxml");
+        put("homeScreen","fxml/homeScreen.fxml");
+        put("eventCreateScreen","fxml/eventCreateScreen.fxml");
+        put("playerScreenController1","fxml/playersScreen.fxml");
+        put("playerScreenController2","fxml/playersScreen.fxml");
+        put("eventScreen","fxml/eventScreen.fxml");
+        put("eventDoneScreen", "fxml/eventDoneScreen.fxml");
+        put("teamDoneScreen", "fxml/teamDoneScreen.fxml");
+        put("playersDoneScreen", "fxml/playersDoneScreen.fxml");
     }};
 
     public static void setStage(Stage stage) {

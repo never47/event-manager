@@ -14,11 +14,18 @@
         <children>
             <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                 <children>
-               <Button mnemonicParsing="false" onAction="#signOut" styleClass="customButton" text="Sign out">
+               <HBox>
+                  <children>
+                     <Button mnemonicParsing="false" onAction="#signOut" styleClass="customButton" text="Sign out">
+                        <HBox.margin>
+                           <Insets left="438.0" top="5.0" />
+                        </HBox.margin>
+                     </Button>
+                  </children>
                   <VBox.margin>
-                     <Insets bottom="5.0" left="435.0" top="5.0" />
+                     <Insets bottom="5.0" />
                   </VBox.margin>
-               </Button>
+               </HBox>
                     <HBox fx:id="hBox" alignment="CENTER">
                         <children>
                      <Label fx:id="teamName" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="168.0" styleClass="text" text="Team Name">

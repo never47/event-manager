@@ -15,7 +15,7 @@
                 <children>
                     <VBox fx:id="vBox">
                         <children>
-                            <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="507.0" text="Score Recording Manager" textOverrun="CLIP">
+                            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="507.0" style="-fx-background-color: pink;" text="Score Recording Manager" textOverrun="CLIP">
                                 <font>
                                     <Font name="System Bold" size="30.0" />
                                 </font>

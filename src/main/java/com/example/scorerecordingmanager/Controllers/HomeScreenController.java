@@ -29,4 +29,5 @@ public class HomeScreenController {
         DBHelper.resetUser();
         SceneChanger.changeScene("login");
     }
+
 }

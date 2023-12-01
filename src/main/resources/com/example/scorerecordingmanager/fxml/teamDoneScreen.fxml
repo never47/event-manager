@@ -46,7 +46,7 @@
                      </Label>
                         </children>
                         <VBox.margin>
-                            <Insets />
+                            <Insets left="20.0" right="20.0" />
                         </VBox.margin>
                     </HBox>
                     <HBox>
@@ -109,16 +109,29 @@
                             </VBox>
                         </children>
                     </HBox>
-                    <HBox alignment="CENTER">
-                        <VBox.margin>
-                            <Insets top="30.0" />
-                        </VBox.margin>
-                    </HBox>
-                    <HBox alignment="CENTER_RIGHT">
-                        <VBox.margin>
-                            <Insets bottom="5.0" right="10.0" top="20.0" />
-                        </VBox.margin>
-                    </HBox>
+               <HBox alignment="CENTER_RIGHT">
+                  <children>
+                     <Label text="How to use">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                        <HBox.margin>
+                           <Insets right="5.0" />
+                        </HBox.margin>
+                     </Label>
+                     <Button mnemonicParsing="false" onAction="#howToUse" styleClass="faqButton" text="?">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </Button>
+                  </children>
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+                  <VBox.margin>
+                     <Insets right="5.0" top="55.0" />
+                  </VBox.margin>
+               </HBox>
                 </children>
             </VBox>
         </children>

@@ -3,6 +3,7 @@ package com.example.scorerecordingmanager.Controllers;
 import com.example.scorerecordingmanager.DBHelper;
 import com.example.scorerecordingmanager.SQLiteJDBC;
 import com.example.scorerecordingmanager.SceneChanger;
+import com.example.scorerecordingmanager.Tools.AlertIndicator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -49,7 +50,6 @@ public class PlayersDoneScreenController {
             //getting playerNames
             selectStatement.setInt(1, teamID);
             ResultSet resultSet = selectStatement.executeQuery();
-
             VBox vBox = new VBox();
             vBox.setPadding(new Insets(0, 0, 0, 30));
 
@@ -58,7 +58,9 @@ public class PlayersDoneScreenController {
                 currHBOX.setSpacing(25);
                 currHBOX.setPadding(new Insets(20,0,0,0));
                 for(int j = 0; j<2;j++){
-                    if(i*2+j>=counter){
+                    resultSet.next();
+                    if(i*2+j>counter){
+                        System.out.println("a");
                         break;
                     }
                     Label currLabel = new Label();
@@ -86,5 +88,9 @@ public class PlayersDoneScreenController {
         SceneChanger.removeScenes();
         DBHelper.resetUser();
         SceneChanger.changeScene("login");
+    }
+    @FXML
+    void howToUse(ActionEvent event) {
+        AlertIndicator.showFAQ();
     }
 }

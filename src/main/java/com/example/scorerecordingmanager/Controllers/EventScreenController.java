@@ -83,6 +83,11 @@ public class EventScreenController {
 
     @FXML
     void finishEvent(ActionEvent event) {
+        if(elapsedSeconds<1){
+            AlertIndicator.showAlarm(Alert.AlertType.ERROR, "ERROR","Timer is not started yet",false);
+            return;
+        }
+        timeline.stop();
         //score save
         if(!DBHelper.isIsScoreSaved()){
             try(PreparedStatement preparedStatement = SQLiteJDBC.getConnection().prepareStatement(INSERT_SCORE)){
@@ -152,9 +157,9 @@ public class EventScreenController {
         });
 
         HBox hBox = new HBox();
-        hBox.setPadding(new Insets(30,0,0,0));
-        hBox.setAlignment(Pos.CENTER);
-        hBox.setSpacing(15);
+        hBox.setPadding(new Insets(30,0,20,15));
+        hBox.setAlignment(Pos.CENTER_LEFT);
+        hBox.setSpacing(85);
         hBox.getChildren().add(returnButton);
         hBox.getChildren().add(backToHome);
 
@@ -205,5 +210,13 @@ public class EventScreenController {
         SceneChanger.removeScenes();
         DBHelper.resetUser();
         SceneChanger.changeScene("login");
+    }
+
+    @FXML
+    void howToUse(ActionEvent event) {
+        AlertIndicator.showFAQ();
+    }
+
+    public void goBack(ActionEvent actionEvent) {
     }
 }

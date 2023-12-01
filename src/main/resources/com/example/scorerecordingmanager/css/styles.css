@@ -13,7 +13,7 @@
 }
 
 #hBox{
-    -fx-background-color: rgba(255, 165, 0, 0.2);
+    -fx-background-color: pink;
 }
 
 .text{
@@ -59,11 +59,11 @@
     -fx-background-radius: 5px;
 }
 
-.iconButton:hover{
-    -fx-opacity: 0.5;
-}
-
 .alert {
     -fx-font-size: 16pt;
+}
+
+.timerButtons:hover, .roundButton:hover{
+    -fx-opacity: 0.6;
 }
 
