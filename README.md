@@ -1,4 +1,4 @@
-# **Score Recording Manager**
+# **Event Manager**
 
 ## Overview
 Score Recording Manager is a JavaFX project designed for event administrators. It simplifies event creation, team management, and result analysis, all backed by an SQLite database. The project uses Maven for seamless development.
