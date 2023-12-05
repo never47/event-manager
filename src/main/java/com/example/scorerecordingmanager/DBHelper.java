@@ -1,5 +1,6 @@
 package com.example.scorerecordingmanager;
 
+// Saving database information for using it on different scenes
 public class DBHelper {
     private static int user_id;
     private static int event_id;

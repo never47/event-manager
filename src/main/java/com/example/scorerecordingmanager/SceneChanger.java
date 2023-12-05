@@ -12,7 +12,7 @@ public class SceneChanger {
     private static final int SCENE_WIDTH = 550;
     private static final int SCENE_HEIGHT = 400;
     private static Stage stage;
-    private static Map<String, Scene> scenes;
+    private static Map<String, Scene> scenes; // created scenes
     private static final Map<String,String> scenes_path = new HashMap<>(){{
         put("login","fxml/login.fxml");
         put("signUp","fxml/signUp.fxml");
@@ -24,7 +24,7 @@ public class SceneChanger {
         put("eventDoneScreen", "fxml/eventDoneScreen.fxml");
         put("teamDoneScreen", "fxml/teamDoneScreen.fxml");
         put("playersDoneScreen", "fxml/playersDoneScreen.fxml");
-    }};
+    }}; //using this hashMap for searching scenes
 
     public static void setStage(Stage stage) {
         SceneChanger.stage = stage;
@@ -50,6 +50,7 @@ public class SceneChanger {
         stage.setScene(scenes.get(name));
         stage.show();
 
+        // not saving next scenes, they are dynamic and always change
         if(name.contains("Done")
                 || name.contains("login")
                 || name.contains("signUp")){

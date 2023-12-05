@@ -18,7 +18,7 @@
                   <children>
                      <Button mnemonicParsing="false" onAction="#signOut" styleClass="customButton" text="Sign out">
                         <HBox.margin>
-                           <Insets left="438.0" top="5.0" />
+                           <Insets left="435.0" top="5.0" />
                         </HBox.margin>
                      </Button>
                   </children>

@@ -23,7 +23,6 @@ public class PlayersDoneScreenController {
     private final String PLAYER_COUNT = "SELECT COUNT(*) FROM PLAYER WHERE teamID = ?";
     @FXML
     private AnchorPane playersField;
-
     @FXML
     private Label teamName;
 
@@ -31,6 +30,10 @@ public class PlayersDoneScreenController {
 
     @FXML
     void initialize() {
+        /*
+            This scene is used twice: for team1 and team2, so I need to understand which one
+            is calling scene now: (using getActiveTeam() in DBHelper class)
+         */
         if(DBHelper.getActiveTeam()==1){
             teamID = DBHelper.getTeam_id1();
             teamName.setText(DBHelper.getTeamName1());
@@ -39,40 +42,52 @@ public class PlayersDoneScreenController {
             teamID = DBHelper.getTeam_id2();
         }
 
+        // reading from database
         try(PreparedStatement countStatement = SQLiteJDBC.getConnection().prepareStatement(PLAYER_COUNT);
             PreparedStatement selectStatement = SQLiteJDBC.getConnection().prepareStatement(SELECT_PLAYER)){
 
-            //getting count
+            // getting players count (need it for dynamic page in cycle)
             countStatement.setInt(1, teamID);
             ResultSet countRS = countStatement.executeQuery();
             int counter = countRS.getInt(1);
 
-            //getting playerNames
+            // getting playerNames
             selectStatement.setInt(1, teamID);
             ResultSet resultSet = selectStatement.executeQuery();
             VBox vBox = new VBox();
             vBox.setPadding(new Insets(0, 0, 0, 30));
 
+            /*
+                Using hbox for arranging labels (two labels in each hbox)
+                and adding them in vBox
+
+                So, cycle in cycle, the external one has Math.ceil(counter/2.)
+                iterations and inner one just 2 iterations:
+             */
             for(int i = 0;i<Math.ceil(counter/2.);i++){
                 HBox currHBOX = new HBox();
                 currHBOX.setSpacing(25);
                 currHBOX.setPadding(new Insets(20,0,0,0));
                 for(int j = 0; j<2;j++){
                     resultSet.next();
-                    if(i*2+j>counter){
-                        System.out.println("a");
+                    // if labels count is odd (appearing empty label at the end)
+                    if(i*2+j>=counter){
                         break;
                     }
+                    //label creating
                     Label currLabel = new Label();
                     currLabel.setText(resultSet.getString("playerName"));
                     currLabel.getStyleClass().add("text");
                     currLabel.setAlignment(Pos.CENTER);
                     currLabel.setPrefSize(200,40);
                     currLabel.setFont(new Font(15.));
+                    //add it to hBox
                     currHBOX.getChildren().add(currLabel);
                 }
+                //add it to vBox
                 vBox.getChildren().add(currHBOX);
             }
+            //and then add vBox in scrollPane
             playersField.getChildren().add(vBox);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -80,15 +95,17 @@ public class PlayersDoneScreenController {
     }
 
     @FXML
-    void goBack(ActionEvent event) {
-        SceneChanger.changeScene("teamDoneScreen");
-    }
-    @FXML
     public void signOut(ActionEvent actionEvent) {
         SceneChanger.removeScenes();
         DBHelper.resetUser();
         SceneChanger.changeScene("login");
     }
+
+    @FXML
+    void goBack(ActionEvent event) {
+        SceneChanger.changeScene("teamDoneScreen");
+    }
+
     @FXML
     void howToUse(ActionEvent event) {
         AlertIndicator.showFAQ();

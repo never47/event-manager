@@ -30,27 +30,39 @@ public class EventDoneScreenController {
 
     @FXML
     void initialize() {
+        /*
+            Creating for each event button -> touch button -> getting more info about the team
+            using for that vBox
+        */
+
+        // creating vBox
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(0,0,0,30));
         vbox.setSpacing(15);
 
+        // database read
         try(PreparedStatement preparedStatement = SQLiteJDBC.getConnection().prepareStatement(SELECT_EVENT)){
             preparedStatement.setInt(1, DBHelper.getUser_id());
             ResultSet resultSet = preparedStatement.executeQuery();
+            //reading each event and creating button
             while(resultSet.next()){
                 Button button = new Button();
                 button.setId(resultSet.getString("eventID").toString());
 
+                //action for each button
                 button.setOnAction(event -> {
                     DBHelper.setEvent(Integer.parseInt(button.getId()), button.getText());
                     SceneChanger.changeScene("teamDoneScreen");
                 });
 
+                // button style
                 button.setFont(new Font(17));
                 button.setAlignment(Pos.CENTER_LEFT);
                 button.setText(resultSet.getString("eventName"));
                 button.getStyleClass().add("customButton");
                 button.setPrefWidth(200.);
+
+                // button -> vbox
                 vbox.getChildren().add(button);
             }
         } catch (SQLException e) {

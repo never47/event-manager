@@ -26,16 +26,6 @@ public class PlayersScreenController {
     private final String INSERT_PLAYER = "INSERT INTO Player (playerName, teamID) VALUES (?, ?)";
     @FXML
     private AnchorPane playersField;
-
-    @FXML
-    private Button enterButton;
-
-    @FXML
-    private HBox hBox;
-
-    @FXML
-    private AnchorPane innerAnchorPane;
-
     @FXML
     private Label teamName;
 
@@ -44,8 +34,9 @@ public class PlayersScreenController {
 
     @FXML
     void initialize() {
-        int counter;
+        int counter; // players count in this team
 
+        // using this scene twice, some fields are different
         if(DBHelper.getActiveTeam()==1){
             teamID = DBHelper.getTeam_id1();
             counter = DBHelper.getTeam_member1_count();
@@ -55,16 +46,28 @@ public class PlayersScreenController {
             counter = DBHelper.getTeam_member2_count();
             teamName.setText(DBHelper.getTeamName2());
         }
-        // adding player buttoms
-        int added_counter = 0;
-        //playersField
+
+        // adding textFields
+
+        int added_counter = 0; // checking for not to add additional textfield(appears in even count)
+
+        // vbox -> scrollBar
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(0, 0, 0, 45));
         playersField.getChildren().add(vbox);
 
+        /*
+               Using hbox for arranging textField (two labels in each hbox)
+               and adding them in vBox
+
+               So, cycle in cycle, the external one has Math.ceil(counter/2.)
+               iterations and inner one just 2 iterations:
+        */
+
         for(int i = 0;i<Math.ceil(counter/2.);i++){
             HBox currHBOX = new HBox();
             currHBOX.setPadding(new Insets(15,0,0,0));
+            currHBOX.setSpacing(25.0);
             //Box.pad
             for(int j=0;j<2;j++){
                 if(added_counter>=counter){
@@ -76,12 +79,10 @@ public class PlayersScreenController {
                 currTF.setFont(new Font(15.0));
                 currTF.setPromptText("Player " + (added_counter+1));
 
-                currHBOX.setSpacing(25.0);
                 currHBOX.getChildren().add(currTF);
                 playersNames.add(currTF);
                 added_counter++;
             }
-
             vbox.getChildren().add(currHBOX);
         }
     }
@@ -97,12 +98,14 @@ public class PlayersScreenController {
 
     @FXML
     void addPlayers(ActionEvent event) {
+        // checking if each text field is not empty
         if(!isFilled()){
             AlertIndicator.showAlarm(Alert.AlertType.ERROR, "Error",
                     "Enter all players names", false);
             return;
         }
 
+        // adding each player in database
         for (TextField playersName : playersNames) {
             try(PreparedStatement preparedStatement = SQLiteJDBC.getConnection().prepareStatement(INSERT_PLAYER)){
                 preparedStatement.setString(1, playersName.getText());

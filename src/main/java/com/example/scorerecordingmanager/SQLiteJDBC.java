@@ -3,6 +3,7 @@ package com.example.scorerecordingmanager;
 import java.sql.*;
 import java.util.Objects;
 
+//database connection class
 public final class SQLiteJDBC {
     private static final String url = "jdbc:sqlite:" + Objects.requireNonNull(SQLiteJDBC.class.getResource("/com/example/scorerecordingmanager/dataBase/sqlite.db")).getFile();
 private static Connection connection;
@@ -20,6 +21,4 @@ private static Connection connection;
             System.out.println(e.getMessage());
         } 
     }
-
-
 }

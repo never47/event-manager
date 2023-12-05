@@ -1,6 +1,5 @@
 package com.example.scorerecordingmanager.Controllers;
 
-import com.example.scorerecordingmanager.DBHelper;
 import com.example.scorerecordingmanager.SQLiteJDBC;
 import com.example.scorerecordingmanager.SceneChanger;
 import com.example.scorerecordingmanager.Tools.AlertIndicator;
@@ -19,10 +18,8 @@ public class SignUpController {
     private final String CHECK_USER = "SELECT * FROM User WHERE userName = ?";
     @FXML
     private PasswordField passwordField;
-
     @FXML
     private TextField usernameField;
-
 
     @FXML
     void login(ActionEvent event) {
@@ -32,13 +29,14 @@ public class SignUpController {
     @FXML
     void signUp(ActionEvent event) {
         try {
+            // if text fields are empty -> error
             if(usernameField.getText().isBlank() && passwordField.getText().isBlank()){
                 AlertIndicator.showAlarm(Alert.AlertType.ERROR, "ERROR",
                         "Please enter username and password",false);
                 return;
             }
-            ///
 
+            // checking if this username exists in database
             try (PreparedStatement preparedStatement = SQLiteJDBC.getConnection().prepareStatement(CHECK_USER)) {
                 preparedStatement.setString(1, usernameField.getText());
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -52,7 +50,7 @@ public class SignUpController {
                 throw new RuntimeException(e);
             }
 
-            ///
+            // creating new user
             PreparedStatement preparedStatement = SQLiteJDBC.getConnection().prepareStatement(SIGN_UP);
             PreparedStatement getIdStatement = SQLiteJDBC.getConnection().prepareStatement(GET_LAST_INSERTED_ID);
             preparedStatement.setString(1, usernameField.getText());

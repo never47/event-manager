@@ -23,14 +23,17 @@ public class LoginController {
 
     @FXML
     void login(ActionEvent event) {
+        // if text fields are empty -> error
         if(usernameField.getText().isBlank() && passwordField.getText().isBlank()){
             AlertIndicator.showAlarm(Alert.AlertType.ERROR, "ERROR",
                     "Please enter username and password",false);
             return;
         }
+        // searching user in database if not found -> error
         try (PreparedStatement preparedStatement = SQLiteJDBC.getConnection().prepareStatement(LOGIN)) {
             preparedStatement.setString(1, usernameField.getText());
             preparedStatement.setString(2, passwordField.getText());
+
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if(resultSet.next()){

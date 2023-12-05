@@ -19,29 +19,13 @@ public class EventCreateScreenController {
     private final String GET_LAST_INSERTED_ID = "SELECT last_insert_rowid()";
     private final String INSERT_TEAM = "INSERT INTO Team (teamName, teamScore, eventID) VALUES (?, ?, ?)";
 
-
     @FXML
     private TextField eventNameField;
-
-
-    @FXML
-    private HBox hBox;
-
-    @FXML
-    private AnchorPane innerAnchorPane;
-
-    @FXML
-    private Button playerButton1;
-
-    @FXML
-    private Button playerButton2;
-
     @FXML
     private Spinner<Integer> spinner1;
 
     @FXML
     private Spinner<Integer> spinner2;
-
 
     @FXML
     private TextField teamName1;
@@ -51,18 +35,19 @@ public class EventCreateScreenController {
 
     @FXML
     void initialize() {
-        // spinner1
+        // spinner1 logic
         SpinnerValueFactory<Integer> valueFactory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10);
         valueFactory1.setValue(1);
         spinner1.setValueFactory(valueFactory1);
 
-        //spinner2
+        //spinner2 logic
         SpinnerValueFactory<Integer> valueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10);
         valueFactory2.setValue(1);
         spinner2.setValueFactory(valueFactory2);
     }
 
     private void createEvent(){
+        // event adding in database
         try (PreparedStatement eventStatement = SQLiteJDBC.getConnection().prepareStatement(INSERT_EVENT);
              PreparedStatement getIdStatement = SQLiteJDBC.getConnection().prepareStatement(GET_LAST_INSERTED_ID);) {
 
@@ -82,6 +67,7 @@ public class EventCreateScreenController {
     }
 
     private void createTeam(String teamName, int teamNumber){
+        // team adding in database
         try (PreparedStatement teamStatement = SQLiteJDBC.getConnection().prepareStatement(INSERT_TEAM);
              PreparedStatement getIdStatement = SQLiteJDBC.getConnection().prepareStatement(GET_LAST_INSERTED_ID);) {
 
@@ -120,10 +106,12 @@ public class EventCreateScreenController {
             return;
         }
 
+        // if event not created yer(using database helper for that)
         if(DBHelper.getEvent_id()==-1){
             createEvent();
         }
 
+        // if team not created yer(using database helper for that)
         if(DBHelper.getTeam_id1()==-1){
             createTeam(teamName1.getText(),1);
         }else{
@@ -141,10 +129,12 @@ public class EventCreateScreenController {
             return;
         }
 
+        // if event not created yer(using database helper for that)
         if(DBHelper.getEvent_id()==-1){
             createEvent();
         }
 
+        // if team not created yer(using database helper for that)
         if(DBHelper.getTeam_id2()==-1){
             createTeam(teamName2.getText(),2);
         }else{
@@ -155,6 +145,7 @@ public class EventCreateScreenController {
 
     @FXML
     void StartEvent(ActionEvent event) {
+        // teams must be created(cant create team without event)
         if(DBHelper.getTeam_id1()==-1 && DBHelper.getTeam_id2()==-1){
             AlertIndicator.showAlarm(Alert.AlertType.ERROR, "ERROR",
                     "Create teams", false);

@@ -34,25 +34,27 @@ public class TeamDoneScreenController {
 
     @FXML
     void initialize() {
+        // database read
         try(PreparedStatement preparedStatement = SQLiteJDBC.getConnection().prepareStatement(SELECT_TEAM)){
             preparedStatement.setInt(1, DBHelper.getEvent_id());
             ResultSet resultSet = preparedStatement.executeQuery();
 
             resultSet.next();
 
-            //team1
+            // team1 info read and save in helper class
             DBHelper.setTeam1(resultSet.getInt("teamID"),resultSet.getString("teamName"));
             teamScore1 = resultSet.getInt("teamScore");
 
             resultSet.next();
 
-            //team2
+            // team2 info read and save in helper class
             DBHelper.setTeam2(resultSet.getInt("teamID"),resultSet.getString("teamName"));
             teamScore2 = resultSet.getInt("teamScore");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
+        // medal show logic
         if(teamScore1>teamScore2){
             medal1.setOpacity(100.);
         }else if(teamScore1<teamScore2){
@@ -61,11 +63,16 @@ public class TeamDoneScreenController {
             medal1.setOpacity(100.);
             medal2.setOpacity(100.);
         }
+
+        // text field info add
         eventName.setText(DBHelper.getEventName());
         teamName1.setText(DBHelper.getTeamName1());
         teamName2.setText(DBHelper.getTeamName2());
     }
-
+    /*
+        Using in this follow two methods only one scene,
+        the argument that makes them difference is activeTeamNumber
+     */
     @FXML
     void showSecondTeam(ActionEvent event) {
         DBHelper.setActiveTeam(2);
@@ -79,15 +86,15 @@ public class TeamDoneScreenController {
     }
 
     @FXML
-    void goBack(ActionEvent event) {
-        SceneChanger.changeScene("eventDoneScreen");
-    }
-
-    @FXML
     public void signOut(ActionEvent actionEvent) {
         SceneChanger.removeScenes();
         DBHelper.resetUser();
         SceneChanger.changeScene("login");
+    }
+
+    @FXML
+    void goBack(ActionEvent event) {
+        SceneChanger.changeScene("eventDoneScreen");
     }
 
     @FXML
