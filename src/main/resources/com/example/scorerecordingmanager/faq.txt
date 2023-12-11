@@ -1,0 +1,16 @@
+Welcome to Score Recording Manager, your ultimate solution for effortless sports event organization! This user-friendly app is designed to simplify the management of sport events and track scores in real-time.
+
+Accessing the Home Screen:
+Upon logging in, you’ll see the home screen showcasing options for “Create Event” and “Events Created.”
+
+Creating a New Event:
+To create an event, select “Create Event” from the home screen and be brought to a new screen. Here, enter the event name, both team names, and specify the number of players. Click on the “Players” button under each team to add the specified number of players’ names. Once completed, press “Enter” to proceed.
+
+Begin score recording:
+Click “Start” to begin the score recording process.Use the provided functions to add or subtract points for each team and utilize the timer. After all scores are finalized, click on “Finish” to display the winning team’s name. In case of a tie, “TIE” will be shown. If any changes are required, click on “Return” to be brought back to the score recording screen. Otherwise, press “Return to Home” to be redirected back to the home screen.
+
+Reviewing Event Details:
+When back at the home screen, click on “Events Created” to view the events you have previously created. Choose the specific event to see team details, player names, and the winning team. The winning team is represented by a golden medal beside the team name. In case of a tie, both teams will have the medal displayed.
+
+Sign Out:
+To exit the app, click on the “Sign out” button.

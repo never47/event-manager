@@ -102,7 +102,7 @@ public class EventCreateScreenController {
         if(eventNameField.getText().isBlank()
                 || teamName1.getText().isBlank()){
             AlertIndicator.showAlarm(Alert.AlertType.ERROR, "Information",
-                    "Enter event and team nam", false);
+                    "Enter event and team name", false);
             return;
         }
 

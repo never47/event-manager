@@ -155,7 +155,7 @@ public class EventScreenController {
 
         // return button
         Button returnButton = new Button();
-        returnButton.setText("return");
+        returnButton.setText("Return");
         returnButton.setFont(new Font(15));
         returnButton.getStyleClass().add("customButton");
         // return button action
@@ -163,7 +163,7 @@ public class EventScreenController {
 
         // back to home button
         Button backToHome = new Button();
-        backToHome.setText("Back To Tome");
+        backToHome.setText("Back To Home");
         backToHome.setFont(new Font(15));
         backToHome.getStyleClass().add("customButton");
         // back to gome button action
