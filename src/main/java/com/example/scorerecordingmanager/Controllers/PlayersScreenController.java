@@ -1,6 +1,7 @@
 package com.example.scorerecordingmanager.Controllers;
 
 import com.example.scorerecordingmanager.DBHelper;
+import com.example.scorerecordingmanager.LogManager;
 import com.example.scorerecordingmanager.SQLiteJDBC;
 import com.example.scorerecordingmanager.SceneChanger;
 import com.example.scorerecordingmanager.Tools.AlertIndicator;
@@ -85,6 +86,7 @@ public class PlayersScreenController {
             }
             vbox.getChildren().add(currHBOX);
         }
+        LogManager.getLogger().debug("Players textfields was created successfully");
     }
 
     private boolean isFilled(){
@@ -111,7 +113,9 @@ public class PlayersScreenController {
                 preparedStatement.setString(1, playersName.getText());
                 preparedStatement.setInt(2, teamID);
                 preparedStatement.executeUpdate();
+                LogManager.getLogger().info("Players added to database");
             } catch (SQLException e) {
+                LogManager.getLogger().error(e.getMessage(),e);
                 throw new RuntimeException(e);
             }
         }

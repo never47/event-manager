@@ -1,6 +1,7 @@
 package com.example.scorerecordingmanager.Controllers;
 
 import com.example.scorerecordingmanager.DBHelper;
+import com.example.scorerecordingmanager.LogManager;
 import com.example.scorerecordingmanager.SQLiteJDBC;
 import com.example.scorerecordingmanager.SceneChanger;
 import com.example.scorerecordingmanager.Tools.AlertIndicator;
@@ -51,6 +52,7 @@ public class TeamDoneScreenController {
             DBHelper.setTeam2(resultSet.getInt("teamID"),resultSet.getString("teamName"));
             teamScore2 = resultSet.getInt("teamScore");
         } catch (SQLException e) {
+            LogManager.getLogger().error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
 
@@ -68,6 +70,7 @@ public class TeamDoneScreenController {
         eventName.setText(DBHelper.getEventName());
         teamName1.setText(DBHelper.getTeamName1());
         teamName2.setText(DBHelper.getTeamName2());
+        LogManager.getLogger().debug("Team info read from database completed successfully");
     }
     /*
         Using in this follow two methods only one scene,

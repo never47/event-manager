@@ -17,8 +17,9 @@ private static Connection connection;
     private static void connect() {
         try {
             connection = DriverManager.getConnection(url);
+            LogManager.getLogger().info("SQLite was connected");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            LogManager.getLogger().error(e.getMessage(),e);
         } 
     }
 }

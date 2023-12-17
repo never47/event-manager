@@ -1,6 +1,7 @@
 package com.example.scorerecordingmanager.Controllers;
 
 import com.example.scorerecordingmanager.DBHelper;
+import com.example.scorerecordingmanager.LogManager;
 import com.example.scorerecordingmanager.SQLiteJDBC;
 import com.example.scorerecordingmanager.SceneChanger;
 import com.example.scorerecordingmanager.Tools.AlertIndicator;
@@ -108,7 +109,10 @@ public class EventScreenController {
                 preparedStatement.setInt(2, DBHelper.getTeam_id2());
 
                 preparedStatement.executeUpdate();
+
+                LogManager.getLogger().debug("Team scores were saved");
             } catch (SQLException e) {
+                LogManager.getLogger().error(e.getMessage(),e);
                 throw new RuntimeException(e);
             }
             // checking isScoreSaved for not to saving one eventTwice
@@ -191,6 +195,8 @@ public class EventScreenController {
         // set scene
         overlayStage.setScene(overlayScene);
         overlayStage.showAndWait();
+
+        LogManager.getLogger().debug("Overlay window was created");
     }
 
     //////1

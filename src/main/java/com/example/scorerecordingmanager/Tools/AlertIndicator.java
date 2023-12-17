@@ -1,9 +1,9 @@
 package com.example.scorerecordingmanager.Tools;
 
+import com.example.scorerecordingmanager.LogManager;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -32,6 +32,7 @@ public class AlertIndicator {
         }
 
         alert.showAndWait();
+        LogManager.getLogger().debug("showAlarm was called");
     }
 
     public static void showFAQ(){
@@ -47,6 +48,7 @@ public class AlertIndicator {
         try {
             content = new String(Files.readAllBytes(Paths.get("src/main/resources/com/example/scorerecordingmanager/faq.txt")));
         } catch (IOException e) {
+            LogManager.getLogger().error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
 
@@ -67,5 +69,6 @@ public class AlertIndicator {
 
         alert.getDialogPane().setContent(sp);
         alert.showAndWait();
+        LogManager.getLogger().debug("showFaq was called");
     }
 }

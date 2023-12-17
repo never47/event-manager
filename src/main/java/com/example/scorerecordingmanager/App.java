@@ -14,6 +14,8 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
+        LogManager.getLogger().info("App started");
         launch();
+        LogManager.getLogger().info("App finished");
     }
 }

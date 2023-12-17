@@ -37,24 +37,29 @@ public class SceneChanger {
     public static void changeScene(String name){
         if(scenes==null){
             scenes = new HashMap<>();
+            LogManager.getLogger().debug("HashMap was created");
         }
         if(!scenes.containsKey(name)){
             FXMLLoader fxmlLoader = new FXMLLoader(SceneChanger.class.getResource(scenes_path.get(name)));
             try {
                 Scene scene = new Scene(fxmlLoader.load(),SCENE_WIDTH,SCENE_HEIGHT);
                 scenes.put(name,scene);
+                LogManager.getLogger().debug("Scene {} was added to hashmap", name);
             } catch (IOException e) {
+                LogManager.getLogger().error(e.getMessage(), e);
                 throw new RuntimeException(e);
             }
         }
         stage.setScene(scenes.get(name));
         stage.show();
+        LogManager.getLogger().info("Scene was changed on {}", name);
 
         // not saving next scenes, they are dynamic and always change
         if(name.contains("Done")
                 || name.contains("login")
                 || name.contains("signUp")){
             scenes.remove(name);
+            LogManager.getLogger().debug("Scene was deleted {}", name);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.scorerecordingmanager.Controllers;
 
 import com.example.scorerecordingmanager.DBHelper;
+import com.example.scorerecordingmanager.LogManager;
 import com.example.scorerecordingmanager.SQLiteJDBC;
 import com.example.scorerecordingmanager.SceneChanger;
 import com.example.scorerecordingmanager.Tools.AlertIndicator;
@@ -39,11 +40,13 @@ public class LoginController {
             if(resultSet.next()){
                 DBHelper.setUser_id(resultSet.getInt("userID"));
                 SceneChanger.changeScene("homeScreen");
+                LogManager.getLogger().info("User logged");
             }else{
                 AlertIndicator.showAlarm(Alert.AlertType.ERROR, "ERROR",
                         "Incorrect username or password", false);
             }
         } catch (SQLException e) {
+            LogManager.getLogger().error(e.getMessage(),e);
             throw new RuntimeException(e);
         }
     }

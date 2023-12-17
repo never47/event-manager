@@ -1,6 +1,7 @@
 package com.example.scorerecordingmanager.Controllers;
 
 import com.example.scorerecordingmanager.DBHelper;
+import com.example.scorerecordingmanager.LogManager;
 import com.example.scorerecordingmanager.SQLiteJDBC;
 import com.example.scorerecordingmanager.SceneChanger;
 import com.example.scorerecordingmanager.Tools.AlertIndicator;
@@ -58,11 +59,12 @@ public class EventCreateScreenController {
                 try (ResultSet resultSet = getIdStatement.executeQuery()) {
                     if (resultSet.next()) {
                         DBHelper.setEvent(resultSet.getInt(1), eventNameField.getText());
+                        LogManager.getLogger().info("Event was added to database");
                     }
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LogManager.getLogger().error(e.getMessage(),e);
         }
     }
 
@@ -83,17 +85,19 @@ public class EventCreateScreenController {
                             DBHelper.setTeam_member1_count(spinner1.getValue());
                             DBHelper.setActiveTeam(1);
                             SceneChanger.changeScene("playerScreenController1");
+                            LogManager.getLogger().info("First team was added to database");
                         }else{
                             DBHelper.setTeam2(resultSet.getInt(1), teamName2.getText());
                             DBHelper.setTeam_member2_count(spinner2.getValue());
                             DBHelper.setActiveTeam(2);
                             SceneChanger.changeScene("playerScreenController2");
+                            LogManager.getLogger().info("Second team was added to database");
                         }
                     }
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LogManager.getLogger().error(e.getMessage(),e);
         }
     }
 
