@@ -16,4 +16,3 @@ Score Recording Manager is a JavaFX project designed for event administrators. I
 **Clone the Repository**:
    ```bash
    git clone https://github.com/never47/event-manager.git
-   cd score-recording-manager
